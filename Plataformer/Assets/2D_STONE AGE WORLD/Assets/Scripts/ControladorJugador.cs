@@ -6,6 +6,7 @@ public class ControladorJugador : MonoBehaviour
 {
 
     public float VelocidadCaminar = 5;
+    public float fuerzaSalto = 20;
     private Rigidbody2D MiCuerpo;
     private Animator MiAnimador;
     // Start is called before the first frame update
@@ -39,5 +40,12 @@ public class ControladorJugador : MonoBehaviour
             MiCuerpo.velocity = new Vector3(0, velVert, 0);
             MiAnimador.SetBool("CAMINANDO", false);
         }
+
+        if (Input.GetButtonDown("Jump"))
+        {
+            MiCuerpo.AddForce(new Vector3(0, fuerzaSalto, 0), ForceMode2D.Impulse);
+        }
+
+        MiAnimador.SetFloat("VEL_VERT", velVert);
     }
 }
